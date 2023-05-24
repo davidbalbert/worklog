@@ -9,7 +9,7 @@ I'm writing a text editor. Until I can think of a better name, it's called [Watt
 
 Watt is for my own use. I want to have something that I can use as a daily driver, but that's a tall order given that I'm used to having syntax highlighting, auto-complete, debugging, project-wide search, GitHub Copilot, etc. We'll see how far I get.
 
-One way I can simplify is by supporting extensions. Because Watt is just for me, if there's a feature I need, I can build it in.
+One way I can simplify is by not supporting extensions. Because Watt is just for me, if there's a feature I need, I can build it in.
 
 I use a Mac, so Watt is a Mac app. A GUI editor is more complicated than a CLI editor, but it's what I like, and it'll give me an excuse to learn more about text layout, rendering, and editing. I'm using Core Text, Apple's low-level text layout and rendering API. There are higher level frameworks, most interestingly TextKit 2, but [after spending time with it](https://github.com/davidbalbert/TextKit-2-Playground) last year, I think it's a bit too buggy. Plus, using Core Text lets me learn more about text layout and rendering.
 

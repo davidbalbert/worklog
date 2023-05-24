@@ -1,7 +1,6 @@
 ---
 title: "Writing a Text Editor"
 date: 2023-05-24T12:23:33-04:00
-draft: true
 ---
 
 I'm writing a text editor. Until I can think of a better name, it's called [Watt](https://github.com/davidbalbert/Watt).

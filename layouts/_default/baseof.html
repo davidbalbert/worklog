@@ -10,7 +10,11 @@
 
         {{ $style := resources.Get "css/main.css" | resources.Fingerprint }}
         <link rel="stylesheet" href="{{ $style.Permalink }}">
-    </head>
+
+        {{ with .OutputFormats.Get "rss" -}}
+            {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+        {{ end -}}
+        </head>
     <body>
         <!-- Code that all your templates share, like a header -->
         {{ block "main" . }}

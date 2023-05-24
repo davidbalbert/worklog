@@ -1,0 +1,7 @@
+{{ $src := .Get "src" }}
+{{ $class := .Get "class" }}
+{{ $style := .Get "style" | safeCSS }}
+
+{{ $image := .Page.Resources.GetMatch $src | resources.Fingerprint }}
+
+<img src="{{ $image.Permalink }}" class="{{ $class }}" style="{{ $style }}" alt="{{ .Get "alt" }}">

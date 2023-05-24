@@ -5,7 +5,7 @@
 
     {{ range first 10 .Pages }}
         <article>
-            <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+            <h2><a class="text-black no-underline hover:text-blue hover:underline" href="{{ .Permalink }}">{{ .Title }}</a></h2>
             <time class="text-gray-500" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
 
             {{ .Content }}

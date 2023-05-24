@@ -26,6 +26,13 @@ p {
     }
 }
 
+.text-black {
+    color: black;
+}
+
+.hover\:text-blue:hover {
+    color: blue;
+}
 
 /* These are copied from Tailwind CSS. If I ever want to switch over, it should be a simple change. */
 
@@ -35,4 +42,12 @@ p {
 
 .mb-2 {
     margin-bottom: 1.5rem;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.hover\:underline:hover {
+    text-decoration: underline;
 }

@@ -1,0 +1,12 @@
+{{ define "title" }}
+    {{ .Title }} – {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+    <p class="mb-2"><a href="{{ .Site.BaseURL }}">&larr; Back</a></p>
+
+    <h1>{{ .Title }}</h1>
+    <time class="text-gray-500" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+
+    {{ .Content }}
+{{ end }}

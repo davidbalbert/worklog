@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            {{ block "title" . }}
+                <!-- Blocks may include default content. -->
+                {{ .Site.Title }}
+            {{ end }}
+        </title>
+
+        {{ $style := resources.Get "css/main.css" }}
+        <link rel="stylesheet" href="{{ $style.Permalink }}">
+    </head>
+    <body>
+        <!-- Code that all your templates share, like a header -->
+        {{ block "main" . }}
+            <!-- The part of the page that begins to differ between templates -->
+        {{ end }}
+    </body>
+</html>

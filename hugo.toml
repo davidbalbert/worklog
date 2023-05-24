@@ -1,0 +1,6 @@
+baseURL = 'https://dave.is/worklog'
+languageCode = 'en-us'
+title = 'Worklog'
+
+[permalinks]
+    "/" = '/:year/:month/:day/:title'

@@ -8,8 +8,6 @@ body {
 
 h1, h2 {
     font-size: 13px;
-    /* margin-top: 0.5rem;
-    margin-bottom: 0.5rem; */
     margin: 0;
 }
 
@@ -39,6 +37,19 @@ p {
 
 .hover\:text-blue:hover {
     color: blue;
+}
+
+sup {
+    vertical-align: top;
+    position: relative;
+    top: -0.2rem;
+    font-size: 0.6rem;
+}
+
+blockquote {
+    margin-left: 0;
+    padding-left: 1.5rem;
+    border-left: 1px solid #999;
 }
 
 /* These are copied from Tailwind CSS. If I ever want to switch over, it should be a simple change. */

@@ -60,5 +60,7 @@ There’s one more collaborative editing wrinkle: what if you’re in the same s
 
 The good news is that if you’re not making a collaborative editor (I’m not), you can sidestep some of these issues. But having multiple cursors or having the same document open in multiple tabs, where each tab has its own scroll state, carets, etc., has many of the same complexities as collaborative editing – though I don’t think there’s anything analogous to our rule about your caret being more important than theirs.
 
+*Update 2023-07-24:* There's one obvious thing I forgot to add. You should be able to treat height changes due to layout of new paragraphs as if they came from edits in the first line fragment. That way you don't need separate code paths for layout vs edits.
+
 
 [^1]: Technically, with contiguous layout you might not know the height of the document either, but you will know the exact height of the portion of the document that starts at the top and ends at the bottom of your viewport, which is enough to deal with the jumping when you scroll up.

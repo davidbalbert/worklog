@@ -12,10 +12,11 @@ Some context:
 
 - Small and fun.
 - Mostly imperative.
+- Static types, but not too fancy.
 - Low level: pointers, no GC, etc.
 - Errors are values. No exceptions.
 - No async. Go-style procs and channels.
-- Pretty safe – no double free or use-after-free or out of bounds access.
+- Pretty safe – no double free, use-after-free or out of bounds access.
 
 At some point I'll write a larger overview. For now, let's talk cleanup.
 
@@ -88,7 +89,7 @@ If we add `defer`, we now have ergonomic, guaranteed cleanup without RAII.
 ```
 func foo(m *Mutex) {
     var k Key = m.lock()
-    defer m.unlock(key)
+    defer m.unlock(k)
 
     // do stuff
 
@@ -105,7 +106,6 @@ With `errdefer` (I'd spell it `recover`), you can clean up only if something goe
 
 ```
 // Fd is a linear type
-
 func open(path string) Fd | error
 
 func open2(a, b string) (Fd, Fd) | error {
@@ -121,22 +121,28 @@ func open2(a, b string) (Fd, Fd) | error {
         return err
     }
 
-    // but not here – we can return a linear type. Our caller or one of its ancestors will need to consume these eventually. 
+    // but not here – it's ok to return a linear type, we assume
+    // our caller will use it
     return fd1, fd2
 }
 ```
 
-There are missing pieces. What would happen if you tried to return the key in the mutex example? You need a way to make sure the mutex outlives the key. Ideally without adding full-fat Rust-style explicit lifetimes and borrow checking. There are options. 
+There are missing pieces. What would happen if you tried to return the key in the mutex example? You need a way to make sure the mutex outlives the key. Ideally without adding full-fat Rust-style generic lifetimes. There are options. 
 
 A description of error handling is missing too. I'll get to that in another post. For now it's enough to say that functions that can fail return something akin to the now common `Result` or `Either` types without actually being one.
 
+Unlike Rust, everything will be copyable by default. Only types that require cleanup because they own a resource should be linear. There's room for affine types too.
 
-- default to copyable
+The term "linear type" implies that linearity is a property of the type itself, in the same way that in Rust a type is either `Copy` or not. But I think it's better to have linearity be a type qualifier in the same way that `const` or `static` is in C (or `mut` in Rust for that matter).
+
+
+- ocaml
+- maybe they could call the one or more mode "relevancy" (see https://en.wikipedia.org/wiki/Substructural_type_system). A value could either be relevant or irrelevant.
+
 
 **TODO: an aside about treating memory different from other resources**
 
-**TODO: an aside about whether values or types should be linear**
-- 
+
 
 [^1]: Be warned: much of the README is out of date, as are other files in the repo, but you might still be interested in poking around.
 
